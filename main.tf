@@ -46,7 +46,6 @@ resource "aws_subnet" "private" {
     vpc_id = aws_vpc.main.id
     cidr_block = var.private_subnet_cidrs[count.index]
     availability_zone = local.azs_names[count.index]
-    
 
 # We can give name as expense-dev-private-useast-1a
     tags = merge(
@@ -54,7 +53,6 @@ resource "aws_subnet" "private" {
         var.private_subnet_tags,
         {
             Name = "${local.resource_name}--Private-${local.azs_names[count.index]}"
-            kubernetes.io/role/internal-elb = "1"
         }
     )
 }
